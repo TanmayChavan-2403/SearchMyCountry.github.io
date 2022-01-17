@@ -1,4 +1,4 @@
-// Fetching Input node and storing in variable
+// Fetching Input element and storing in variable
 let searchBar = document.getElementById('search-field');
 
 // Fetching main container in which we will be displaying our description container
@@ -12,6 +12,11 @@ searchBar.addEventListener('keypress', (event) => {
 })
 
 
+// This function will be either called from the above code or from the list elements which are present on line 57 in initialRender.js
+// file. Onclick event is added to each element along with custom parameter, so that whenever its clicked it will pass the searchValue 
+// to this function. In the If condition we are checking if we got searchValue, if YES then it means user clicked on one of the list
+// elements, and if NO then it means the function is called by  'keypress' eventlistener and we will be taking searchValue from 
+// input field which we have stored in 'searchBar' variable on line 2 of this current file.
 function searchForCountry(event, searchValue = ""){
 	let countryName;
 	if (searchValue != ""){
@@ -20,7 +25,7 @@ function searchForCountry(event, searchValue = ""){
 		countryName = searchBar.value;
 	}
 
-	// Remove all the nodes before inserting new one
+	// Remove all the elements before inserting new one
 	while (mainContainer.firstChild){
 		mainContainer.removeChild(mainContainer.firstChild);
 	}
@@ -42,6 +47,7 @@ function fillContentInContainer(searchData){
 	.then(res => {
 		if (res.length > 0){
 
+			// A callback function which will be called when we are done extracting the 
 			extractData(res[0], (resp)=> {
 				console.log(resp)
 				mainContainer.insertAdjacentHTML('afterbegin',
@@ -101,6 +107,7 @@ function fillContentInContainer(searchData){
 }
 
 
+// A simple function to take the data and store it in the variable so that we can use it in above function easily
 function extractData(res, callback){
 	let countryName = res.name.common;
 	let nativeName = res.name.official
@@ -120,17 +127,18 @@ function extractData(res, callback){
 	let latlng1 = res.latlng[0]
 	let latlng2 = res.latlng[1]
 
+	// Checking if its independent then we will just store 'Independent' and if its not then we will store 'not an Independent'
 	let isIndependent = res.independent ? 'Independent' : 'not an Independent';
 	let area = res.area;
 
-	// let timezone = res.timezones[0];
 	let continent = res.continents[0];
 
 	let capital;
 	let clantlng1;
 	let clantlng2;
 
-
+	// Checking if we are having any capital attibute for the current result, if no then it will throw error and we can catch it in
+	// our catch block.
 	try{
 		capital = res.capital[0];
 		clantlng1 = res.capitalInfo.latlng[0]
@@ -141,10 +149,15 @@ function extractData(res, callback){
 	}
 
 
+	// there can be multiple timezones, so we can store it in one array.
 	let timezone = []
 	for (let key in res.timezones){
 		timezone.push(res.timezones[key])
 	}
+
+	// After storing all the timezones we will check if its length is greater than 1 which means that we are having multiple
+	// timezones and we have to change our grammer, we have to replace 'timeszone' with 'timezones'. Adding 's' in the end 
+	// to make it in plural form.
 	timezone = timezone.length > 1 ?
 			   `${countryName} follows following timezones ${timezone.join(', ')}` :
 			   `${countryName} follows following timezone ${timezone.join(', ')}`;
@@ -155,6 +168,8 @@ function extractData(res, callback){
 	});
 }
 
+// A simple funtion to display an error div container with an image if anything goes wrong.
+// This function is triggered from line 39 and line 103 of the current file.
 function displayError(){
 
 	// Remove all the nodes before inserting new one

@@ -9,8 +9,8 @@ function grabAllNames(){
 		return;
 	}
 
-	// Doing a fetch request to fetch all country names 
 
+	// Doing a fetch request to fetch all country names 
 	fetch('https://restcountries.com/v3.1/all')
 	.then(res => {
 		res.json()
@@ -26,19 +26,24 @@ function createListElements(data, shouldWeSort = true){
 	let processedData = []
 
 	if (shouldWeSort){
-		// Iterating over the result data and then extracting its name and builting our own href link with the help of name and
-		// pushing it to our array.
+		// Iterating over the result data and then extracting its name and building our own href link with the help of name and
+		// pushing it to our array named processedData.
 		for (let idx = 0; idx < 250; idx++){
 			processedData.push({name: data[idx].name.common, href: `https://restcountries.com/v3.1/name/${data[idx].name.common}`})
 		}
-		// Sorting the processed array
+
+		// Sorting the processed array using inbuilt sort method and our custom compare funtion
 		processedData.sort(compare);
+
+		// Saving the data in session storage so that we can use it later when user refresh instead of re-fetching and sorting it.
 		sessionStorage.setItem('data', JSON.stringify(processedData))	
 	} else {
+		// Else condition will be executed when we are having our data saved in sessionstorage. 
 		processedData = data;
 	}
 	
-	// Fetching and storing the contianer in which we will be adding list
+
+	// Fetching and storing the contianer in which we will be adding list container
 	let container = document.getElementById('list-container');
 
 	// Creating li elements using insertAdjscentHTML method and adding it to parent container
