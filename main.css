@@ -10,11 +10,10 @@ font-family: 'Josefin Slab', serif;*/
 	padding: 0px;
 	margin: 0px;
 	box-sizing: border-box;
+	border: 1px solid red;
 }
 
 body{
-	width: 100%;
-	height: 100vh;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
@@ -213,6 +212,7 @@ img{
 	height: 90%;
 	display: flex;
 	flex-wrap: wrap;
+	position: relative;
 	align-items: center;
 	justify-content: center;
 }
@@ -356,6 +356,14 @@ img{
 
 
 @media only screen and (max-width: 700px) {
+	#initial-result-container{
+		width: 100vw;
+	}
+
+	#country-description{
+		width: 100vw;
+	}
+
 	table{
 		font-size: 15px;
 	}
