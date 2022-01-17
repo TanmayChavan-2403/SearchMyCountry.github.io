@@ -33,12 +33,15 @@ function searchForCountry(event, searchValue = ""){
 	console.log('Hiding list container');
 	
 
-	// Checking if we are having any 'country-detail-container' container, if yes then we will be removing it else we will proceed
+	// Checking if we are having any 'country-detail-container' container or 'error-container', if yes then we will be removing it else we will proceed
 	// with normal execution
 	let countryDetailContainer = document.getElementById('country-detail-container');
 	if (countryDetailContainer){
 		countryDetailContainer.remove();
-		console.log('Removing container');
+	}
+	let errorContainer = document.getElementById('error-container');
+	if (errorContainer){
+		errorContainer.remove();
 	}
 
 	
@@ -184,10 +187,13 @@ function extractData(res, callback){
 // This function is triggered from line 39 and line 103 of the current file.
 function displayError(){
 
-	// Remove all the nodes before inserting new one
-	while (mainContainer.firstChild){
-		mainContainer.removeChild(mainContainer.firstChild);
-	}
+	// Remove 'country-detail-container' and 'error-container' if they are present
+	let descriptionContainer = document.getElementById('country-detail-container');
+	let errorContainer = document.getElementById('error-container');
+		
+	if (descriptionContainer) descriptionContainer.remove();
+	if (errorContainer) errorContainer.remove();
+
 
 	mainContainer.insertAdjacentHTML('afterbegin', 
 		`
@@ -204,7 +210,12 @@ function displayError(){
 function displayList(){
 	let listContainer = document.getElementById('list-container');
 	let descriptionContainer = document.getElementById('country-detail-container');
+	let errorContainer = document.getElementById('error-container');
+	if (errorContainer){
+		errorContainer.remove();
+	}
 	listContainer.style.display='block';
-	descriptionContainer.remove();
-
+	if (descriptionContainer){
+		descriptionContainer.remove();
+	}
 }
