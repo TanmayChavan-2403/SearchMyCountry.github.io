@@ -7,7 +7,7 @@ A simple web application to search for country details
 
 
 ## 🚀 About Me
-I'm a full stack developer with a dream to do job in MNC's, always keeping myself buys learning new things so that I can be better than I am today
+I'm a full stack developer with a dream to do job in MNC's, always keeping myself busy learning new things so that I can be better than I am today
 
 
 
