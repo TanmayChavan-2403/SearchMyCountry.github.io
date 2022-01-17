@@ -50,15 +50,6 @@ img{
 
 
 /* Input container styling starts */
-#back-button{
-	width: 50px;
-	height: 50px;
-	display: flex;
-	cursor: pointer;
-	font-size: 40px;
-	align-items: center;
-	justify-content: center;
-}
 
 #search-field-container{
 	top: 0px;
@@ -68,7 +59,7 @@ img{
 	position: fixed;
 	background: white;
 	align-items: center;
-	justify-content: space-evenly;
+	justify-content: center;
 }
 
 #search-field-container input{

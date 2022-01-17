@@ -19,28 +19,16 @@ searchBar.addEventListener('keypress', (event) => {
 // input field which we have stored in 'searchBar' variable on line 2 of this current file.
 function searchForCountry(event, searchValue = ""){
 	let countryName;
-
 	if (searchValue != ""){
 		countryName = searchValue;
 	} else{
 		countryName = searchBar.value;
 	}
 
-	
-	// Disabling the listcontainer so that we can display our new description-container result
-	let listContainer = document.getElementById('list-container');
-	listContainer.style.display = 'none';
-	console.log('Hiding list container');
-	
-
-	// Checking if we are having any 'country-detail-container' container, if yes then we will be removing it else we will proceed
-	// with normal execution
-	let countryDetailContainer = document.getElementById('country-detail-container');
-	if (countryDetailContainer){
-		countryDetailContainer.remove();
-		console.log('Removing container');
+	// Remove all the elements before inserting new one
+	while (mainContainer.firstChild){
+		mainContainer.removeChild(mainContainer.firstChild);
 	}
-
 	
 	// Fetching details for search value
 	fetch(`https://restcountries.com/v3.1/name/${countryName}`)
@@ -196,15 +184,4 @@ function displayError(){
 			</div>
 		`
 	)
-}
-
-
-
-// A small function to disable description container[maincontainer] and enabling listContainer
-function displayList(){
-	let listContainer = document.getElementById('list-container');
-	let descriptionContainer = document.getElementById('country-detail-container');
-	listContainer.style.display='block';
-	descriptionContainer.remove();
-
 }
