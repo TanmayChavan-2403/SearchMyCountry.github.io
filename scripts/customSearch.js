@@ -67,12 +67,12 @@ function fillContentInContainer(searchData){
 										</tr>
 										<tr>
 											<td><b>Languages Spoken: </b></td>
-											<td>${resp.languages.join(',')}</td>
+											<td>${resp.languages}</td>
 										</tr>
 										<tr>
 											<td><b>Check Country on map: </b></td>
 											<td>
-												<a href="${resp.googleMap}" target='_blank'>Google Maps</a><b>/</b>
+												<a href="${resp.googleMap}" target='_blank'>Google Maps</a><b> /</b>
 												<a href="${resp.openstreetmap}"  target='_blank'>Open Street Maps</a>
 											</td>
 										</tr>
@@ -85,8 +85,8 @@ function fillContentInContainer(searchData){
 							</div>
 							<div id="country-details">
 								${resp.countryName} is an ${resp.isIndependent} Country with an ${resp.area}km2 area filled with ${resp.population} of population.
-								Geographically it is located at ${resp.latlng1} degrees North and ${resp.latlng2} degrees East. Languages spoken in this country are
-								${resp.languages.join(',')}. ${resp.capital} ${resp.countryName} follows ${resp.timezone} timezone and is a part of ${resp.continent} continent.
+								Geographically it is located at ${resp.latlng1} degrees North and ${resp.latlng2} degrees East. ${resp.languages}. 
+								${resp.capital} ${resp.timezone} and is a part of ${resp.continent} continent.
 							</div>
 						</div>
 					</div>
@@ -110,6 +110,8 @@ function extractData(res, callback){
 	for (let key in res.languages){
 		languages.push(res.languages[key])
 	}
+	// Re validating if its empty then we will change the statement
+	languages = languages.length === 0 ? '' : `Languages spoken in this country are ${languages.join(', ')}`
 
 	let googleMap = res.maps.googleMaps;
 	let openstreetmap = res.maps.openStreetMaps;
@@ -121,7 +123,7 @@ function extractData(res, callback){
 	let isIndependent = res.independent ? 'Independent' : 'not an Independent';
 	let area = res.area;
 
-	let timezone = res.timezones[0];
+	// let timezone = res.timezones[0];
 	let continent = res.continents[0];
 
 	let capital;
@@ -137,6 +139,16 @@ function extractData(res, callback){
 	} catch {
 		capital = `This country does not have any capital.`;
 	}
+
+
+	let timezone = []
+	for (let key in res.timezones){
+		timezone.push(res.timezones[key])
+	}
+	timezone = timezone.length > 1 ?
+			   `${countryName} follows following timezones ${timezone.join(', ')}` :
+			   `${countryName} follows following timezone ${timezone.join(', ')}`;
+
 
 	callback({countryName, nativeName, languages, googleMap, openstreetmap, population, latlng1, latlng2, flagImage,
 			  clantlng1, clantlng2, isIndependent, area, capital, timezone, continent

@@ -364,6 +364,9 @@ img{
 		width: 180px;
 	}
 
+	#country-name{
+		font-size: 5vw;
+	}
 
 	#search-field-container input{
 		font-size: 18px;
