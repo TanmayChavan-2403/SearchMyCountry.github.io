@@ -1,0 +1,372 @@
+/*Available fonts*/
+
+/*font-family: 'Josefin Sans', sans-serif;
+font-family: 'Josefin Slab', serif;*/
+
+
+
+/* Global Declarations */
+*{
+	padding: 0px;
+	margin: 0px;
+	box-sizing: border-box;
+}
+
+body{
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+}
+
+a{
+	text-decoration: none;
+	color: black;
+}
+
+
+img{
+	width: auto;
+	height: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Input container styling starts */
+
+#search-field-container{
+	top: 0px;
+	width: 100%;
+	height: 12%;
+	display: flex;
+	position: fixed;
+	background: white;
+	align-items: center;
+	justify-content: center;
+}
+
+#search-field-container input{
+	width: 80%;
+	height: 75%;
+	outline: none;
+	border: none;
+	padding: 15px;
+	font-size: 25px;
+	font-weight: 700;
+	letter-spacing: 2px;
+	font-family: Josefin Slab, serif;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+#search-field-container input::before{
+	content: "";
+	top: 0px;
+	width: 50px;
+	height: 50px;
+	background: red;
+	position: absolute;
+}
+
+/* Input container styling ends */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Result container styling starts */
+
+#initial-result-container{
+	width: 85%;
+	height: 80%;
+	bottom: 20px;
+	position: absolute;
+	overflow-y: scroll;
+	-ms-overflow-style: none;  /* IE and Edge */
+  	scrollbar-width: none;  /* Firefox */
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+/*Hiding scrollbar for Chrome, Safari and Opera Browsers*/
+#initial-result-container::-webkit-scrollbar{
+	display: none;
+}
+
+
+#list-container{
+	width: 100%;
+	list-style: none;
+	height: fit-content;
+}
+
+.list{
+	width: 100%;
+	height: 60px;
+	display: flex;
+	/*flex-wrap: wrap;*/
+	justify-content: center;
+	/*border: 1px solid grey;*/
+	border-bottom: 1px solid #ededed;
+}
+
+.icon{
+	width: 6%;
+	color: grey;
+	height: 100%;
+	display: flex;
+	font-size: 25px;
+	min-width: 65px;
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+}
+
+.country-name{
+	width: 94%;
+	height: 100%;
+	padding: 5px;
+	display: flex;
+	font-size: 20px;
+	cursor: pointer;
+	font-weight: 500;
+	align-items: center;
+	font-family: 'Josefin Sans', sans-serif;
+
+}
+
+/* Result container styling ends */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* country-detail-container styling starts*/
+
+#country-detail-container{
+	width: 100%;
+	height: 100%;
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+#country-name{
+	width: 100%;
+	height: 10%;
+	display: flex;
+	font-size: 28px;
+	align-items: center;
+	justify-content: center;
+}
+
+#country-detail-section{
+	width: 100%;
+	height: 90%;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+}
+
+#country-description{
+	width: 70%;
+	height: 100%;
+	min-width: 615px;
+}
+
+#flag-image{
+	width: 100%;
+	height: 60%;
+	padding: 5px;
+	text-align: center;
+}
+
+#rough-desc{
+	width: 100%;
+	height: 40%;
+	padding: 10px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	font-size: 21px;
+}
+
+#rough-desc table tr td{
+	padding: 1px 4px;
+}
+
+#rough-desc a{
+	color: #125c99;
+}
+
+
+#country-details{
+	width: 30%;
+	height: 100%;
+	min-width: 265px;
+	padding: 10px;
+	font-size: 18px;
+	line-height: 30px;
+	overflow-y: scroll;
+}
+
+/* country-detail-container styling ends*/
+
+
+
+
+
+
+
+
+
+
+
+
+/*Error container styling starts*/
+
+#error-container{
+	width: 100%;
+	height: 100%;
+	border: 1px solid black;
+}
+
+#error-container img{
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+/*Error container styling ends*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 1090px) {
+	table{
+		border-collapse: collapse;
+        table-layout: fixed;
+	}
+
+	table tr td{
+		word-wrap: break-word;
+	}
+
+	#country-detail-section{
+		height: 100%;
+	}
+
+	#country-details{
+		width: 85%;
+		margin: 50px 0px;
+		height: fit-content;
+	}
+
+	#country-description{
+		width: 95%;
+		height: 75%;
+	}
+}
+
+
+
+@media only screen and (max-width: 700px) {
+	table{
+		font-size: 15px;
+	}
+
+	td{
+		width: 180px;
+	}
+
+
+	#search-field-container input{
+		font-size: 18px;
+	}
+
+}
