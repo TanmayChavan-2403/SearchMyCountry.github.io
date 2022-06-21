@@ -1,5 +1,5 @@
 
-# Search My Countery
+# Search My Country
 
 A simple web application to search for country details
 
